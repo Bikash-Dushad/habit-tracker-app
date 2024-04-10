@@ -1,83 +1,93 @@
 body {
     height: auto;
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
 
 #top {
-background-color: #3f51b5;
-height: 5vh;
-color: white;
-padding: 20px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+    background-color: #3f51b5;
+    height: 5vh;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #userlogout {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-#userlogout a {
-color: white;
-text-decoration: none;
-}
-
-#bottom {
-background-color: aqua;
-display: flex;
-justify-content: center;
-padding: 20px;
-height: 84.2vh;
-gap: 20px;
-}
-
-#habitcontainer {
-background-color: white;
-padding: 20px;
-width: 50vw;
-border-radius: 10px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#habitbox {
-display: flex;
-align-items: center;
-flex-direction: column;
-}
-
-
-#habitbox h3 {
-margin-bottom: 10px;
-}
-
-#habitform {
     display: flex;
-    justify-content: center;
-    width: 100%;
+    align-items: center;
     gap: 10px;
 }
 
-#habitform input[type="text"], #habitform input[type="submit"] {
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    width: 80%; 
-    max-width: 300px;
+#userlogout a {
+    color: white;
+    text-decoration: none;
 }
 
-#habitform input[type="submit"] {
-    padding: 8px 20px;
-    background-color: #49beb7;
+/* Default styles */
+#habit-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#habit-form h3 {
+    margin-top: 0;
+}
+
+#habitinput {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+#addhabit,
+#changingbtn {
+    padding: 8px 16px;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+#addhabit {
+    background-color: #4CAF50;
+}
+
+#changingbtn {
+    background-color: #007bff;
+    margin-top: 10px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    #habitinput {
+        width: 100%;
+    }
+}
+
+#list-of-habits{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #007bff; */
+}
+
+.habit-name{
+    margin-right: 10%;
+    /* background-color: #4CAF50; */
+}
+.weeklyviews{
+    display: flex;
+    /* background-color: #4CAF50; */
+    margin-right: 3%;
+}
+#date-n-toggle{
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
 }
