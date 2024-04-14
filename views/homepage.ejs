@@ -26,16 +26,47 @@
     </form>
     <button id="changingbtn">Show Daily</button>
   </div>
-
-  <div id="list-of-habits">
+  <div id="bottom">
     <% for (let habit of habits) { %>
-      <div class="habit-name">
-        <h2><%= habit.habitname %></h2>
-      </div> 
-      <div class="weeklyviews">
-        <% for (let date of weekdates) { %>
-          <div id="date-n-toggle">
-            <p><%= date %></p>
+      <div id="list-of-habits">
+        <div class="habit-name">
+          <h2>
+            <%= habit.habitname %>
+          </h2>
+        </div>
+        <div class="weeklyviews">
+          <div class="vertical-line"></div>
+          <% for (let date of weekdates) { %>
+            <div id="date-n-toggle">
+              <p>
+                <%= date %>
+              </p>
+              <% let found; let status; habit.date.find((item)=> { if(item.date ===
+                date) { found = true; status = item.complete; } }); %>
+
+                <a href="/habit/toggle/?id=<%= habit._id%>&date=<%=date%>">
+                  <% if(found && status=='y' ) { %>
+                    <i class="fas fa-check-circle" style="color: green"></i>
+                    <% } else if(found && status=='n' ) { %>
+                      <i class="fas fa-times-circle" style="color: red"></i>
+                      <% } else { %>
+                        <i class="fa-solid fa-circle" style="color: gray;"></i>
+                        <% } %>
+
+                </a>
+            </div>
+            <div class="vertical-line"></div>
+
+            <% } %>
+        </div>
+        <a href="/habit/delete/?id=<%= habit._id%>"><i class="fa-solid fa-trash"></i></a>
+      </div>
+      <div class="dailyviews" style="display: none;">
+        <% let today=new Date(); let date=today.getDate(); let day=today.getDay(); let dayName; switch (day) { case 0:
+          dayName="Sun" ; break; case 1: dayName="Mon" ; break; case 2: dayName="Tue" ; break; case 3: dayName="Wed" ;
+          break; case 4: dayName="Thu" ; break; case 5: dayName="Fri" ; break; case 6: dayName="Sat" ; break; default:
+          dayName="Unknown" ; } let actualdate=date + " " + dayName; %>
+          <%= actualdate %>
             <% let found; let status; habit.date.find((item)=> { if(item.date ===
               date) { found = true; status = item.complete; } }); %>
     
@@ -44,63 +75,39 @@
                   <i class="fas fa-check-circle" style="color: rgb(130, 189, 107)"></i>
                   <% } else if(found && status=='n' ) { %>
                     <i class="fas fa-times-circle" style="color: rgb(241, 121, 109)"></i>
-                  <% } else { %>
+                    <% } else { %>
                       <i class="fa-solid fa-circle"></i>
-                  <% } %>
+                      <% } %>
               </a>
-          </div>
-  
-          <% } %>
       </div>
-      <a href="/habit/delete/?id=<%= habit._id%>">delete habit</a>
+      <% } %>
   </div>
-  
-  <div class="dailyviews" style="display: none;">
-    <% let today=new Date(); let date=today.getDate(); let day=today.getDay(); let dayName; switch (day) { case 0:
-      dayName="Sun" ; break; case 1: dayName="Mon" ; break; case 2: dayName="Tue" ; break; case 3: dayName="Wed" ;
-      break; case 4: dayName="Thu" ; break; case 5: dayName="Fri" ; break; case 6: dayName="Sat" ; break; default:
-      dayName="Unknown" ; } let actualdate=date + " " + dayName; %>
-      <%= actualdate %>
-        <% let found; let status; habit.date.find((item)=> { if(item.date ===
-          date) { found = true; status = item.complete; } }); %>
 
-          <a href="/habit/toggle/?id=<%= habit._id%>&date=<%=date%>">
-            <% if(found && status=='y' ) { %>
-              <i class="fas fa-check-circle" style="color: rgb(130, 189, 107)"></i>
-              <% } else if(found && status=='n' ) { %>
-                <i class="fas fa-times-circle" style="color: rgb(241, 121, 109)"></i>
-              <% } else { %>
-                  <i class="fa-solid fa-circle"></i>
-            <% } %>
-          </a>
-  </div>
-  <% } %>
+  <script>
+    document.getElementById("changingbtn").addEventListener("click", function () {
+      let weeklyViews = document.querySelectorAll(".weeklyviews");
+      let dailyViews = document.querySelectorAll(".dailyviews");
+      let button = document.getElementById("changingbtn");
 
-      <script>
-        document.getElementById("changingbtn").addEventListener("click", function () {
-          let weeklyViews = document.querySelectorAll(".weeklyviews");
-          let dailyViews = document.querySelectorAll(".dailyviews");
-          let button = document.getElementById("changingbtn");
-
-          if (button.innerHTML === "Show Daily") {
-            weeklyViews.forEach(function (view) {
-              view.style.display = 'none';
-            });
-            dailyViews.forEach(function (view) {
-              view.style.display = 'block';
-            });
-            button.innerHTML = "Show Weekly";
-          } else {
-            weeklyViews.forEach(function (view) {
-              view.style.display = 'block';
-            });
-            dailyViews.forEach(function (view) {
-              view.style.display = 'none';
-            });
-            button.innerHTML = "Show Daily";
-          }
+      if (button.innerHTML === "Show Daily") {
+        weeklyViews.forEach(function (view) {
+          view.style.display = 'none';
         });
-      </script>
+        dailyViews.forEach(function (view) {
+          view.style.display = 'block';
+        });
+        button.innerHTML = "Show Weekly";
+      } else {
+        weeklyViews.forEach(function (view) {
+          view.style.display = 'block';
+        });
+        dailyViews.forEach(function (view) {
+          view.style.display = 'none';
+        });
+        button.innerHTML = "Show Daily";
+      }
+    });
+  </script>
 </body>
 
 </html>

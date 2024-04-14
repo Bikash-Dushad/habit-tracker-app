@@ -61,17 +61,28 @@ body {
 }
 
 /* Responsive styles */
-@media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 600px) {
     #habitinput {
         width: 100%;
     }
+} 
+#bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-
 #list-of-habits{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
     /* background-color: #007bff; */
+    margin: 20px;
+    box-shadow: 10px 7px 10px burlywood;
 }
 
 .habit-name{
@@ -91,3 +102,10 @@ body {
     flex-direction: column;
     margin: 10px;
 }
+
+.vertical-line{
+    border-left: 1px solid black;
+    height: 90px;
+    width: 1px;
+    margin: 0 5px;
+  }
