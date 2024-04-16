@@ -4,8 +4,6 @@ const port = 8001;
 require('./config/mongoose');
 const cookieParser = require('cookie-parser')
 
-const ejslayout = require('express-ejs-layouts')
-
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser())
 

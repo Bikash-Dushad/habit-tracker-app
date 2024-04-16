@@ -29,6 +29,8 @@ try {
 }
 }
 
+
+//function for getting todays date
 async function getTodayDate() {
   let today = new Date();
   let date = today.getDate();
@@ -65,6 +67,8 @@ async function getTodayDate() {
   return actualdate;
 }
 
+
+// for marking the habit done , undone or nothing
 module.exports.toggle = async function (req, res) {
   try {
     let id = req.query.id;
@@ -117,9 +121,4 @@ try {
 } catch (error) {
   console.log(error)
 }
-}
-
-
-module.exports.showdaily = async function(req, res){
-  
 }
